@@ -5,7 +5,6 @@ fun main(){
     var count = 0
     var oldInput = mutableListOf<List<Int>>()
 
-
     val randomList = mutableListOf<Int>()
 
     while(randomList.size != 3){
@@ -14,8 +13,9 @@ fun main(){
         if(!(rand in randomList)){
             randomList.add(rand)
         }
-//        println(rand)
+        //        println(rand)
     }
+
 //    println(randomList)
 
 
@@ -25,7 +25,6 @@ fun main(){
     while (true){
         var strake = 0
         var ball = 0
-        val inputData = mutableListOf<Int>()
 
         print("숫자 세개를 입력하세요 : ")
         val input = readLine()
@@ -42,8 +41,8 @@ fun main(){
             continue
         }
 
-        for(i in input!!.split(" ")){
-            inputData.add(i.toInt())
+        val inputData = input!!.split(" ").map {
+            it.toInt()
         }
 
         oldInput.add(inputData)
@@ -51,17 +50,18 @@ fun main(){
 
         for((n, i) in inputData.withIndex()){
             if(i == randomList[n]){
-//                println("$i 스타라이크")
+//                println("$i 스트라이크")
                 strake++
             }   else if(i in randomList){
 //                println("$i 볼")
                 ball++
             }
 
-        }
+        }`
 
         if(strake == 3) {
             println("축하합니다.")
+            println("정답은 ${randomList}입니다.")
             break
         }
 
