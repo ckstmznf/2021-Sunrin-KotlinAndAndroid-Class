@@ -32,31 +32,29 @@ fun main(){
         print("=")
     }
     println()
-
-
-    car5.nowLuggage()
-    car5.inLuggage(5)
-    car5.nowLuggage()
-    car5.outLuggage(4)
-    car5.nowLuggage()
-    car5.outLuggage(10)
-    car5.nowLuggage()
-
-
-    repeat(30){
-        print("=")
-    }
-    println()
-
-
-    car4.nowPerson()
-    car4.nowLuggage()
-    car4.inPerson(2)
-    car4.inLuggage(4)
-    car4.nowPerson()
-    car4.nowLuggage()
-    car4.outPerson(4)
-    car4.outLuggage(5)
-    car4.nowPerson()
-    car4.nowLuggage()
+//    car5.nowLuggage()
+//    car5.inLuggage(5)
+//    car5.nowLuggage()
+//    car5.outLuggage(4)
+//    car5.nowLuggage()
+//    car5.outLuggage(10)
+//    car5.nowLuggage()
+//
+//
+//    repeat(30){
+//        print("=")
+//    }
+//    println()
+//
+//
+//    car4.nowPerson()
+//    car4.nowLuggage()
+//    car4.inPerson(2)
+//    car4.inLuggage(4)
+//    car4.nowPerson()
+//    car4.nowLuggage()
+//    car4.outPerson(4)
+//    car4.outLuggage(5)
+//    car4.nowPerson()
+//    car4.nowLuggage()
 }
