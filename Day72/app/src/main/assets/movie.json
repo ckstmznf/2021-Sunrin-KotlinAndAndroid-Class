@@ -1,0 +1,124 @@
+{
+  "Genres" : [
+    {
+      "name" : "최근 상영작",
+      "movies" : [
+        {
+          "name": "샹치와 텐 링즈의 전설",
+          "poster": "recent_1",
+          "desc": "샹치"
+        },
+        {
+          "name": "인질",
+          "poster": "recent_2",
+          "desc": "황정민 주연"
+        },
+        {
+          "name": "보이스",
+          "poster": "recent_3",
+          "desc": "목소리"
+        },
+        {
+          "name": "모가디슈",
+          "poster": "recent_4",
+          "desc": "내전"
+        },
+        {
+          "name": "건파우더 밀크쉐이크",
+          "poster": "recent_5",
+          "desc": "화약"
+        }
+      ]
+    },
+    {
+      "name" : "액션",
+      "movies" : [
+        {
+          "name": "분노의 질주: 더 얼티메이트",
+          "poster": "action_1",
+          "desc": "자동차보다 몸싸움이 더 많은 영화"
+        },
+        {
+          "name": "고질라 vs 콩",
+          "poster": "action_2",
+          "desc": "킹콩"
+        },
+        {
+          "name": "백두산",
+          "poster": "action_3",
+          "desc": "화산"
+        },
+        {
+          "name": "존윅3",
+          "poster": "action_4",
+          "desc": "돔황챠"
+        },
+        {
+          "name": "베놈",
+          "poster": "action_5",
+          "desc": "베놈2"
+        }
+      ]
+    },
+    {
+      "name" : "마블 모아보기",
+      "movies" : [
+        {
+          "name": "샹치와 텐 링즈의 전설",
+          "poster": "marvel_1",
+          "desc": "샹치"
+        },
+        {
+          "name": "블랙 위도우",
+          "poster": "marvel_2",
+          "desc": "스칼렛 요한슨"
+        },
+        {
+          "name": "스파이더맨: 파 프롬 홈",
+          "poster": "marvel_3",
+          "desc": "집나온 톰"
+        },
+        {
+          "name": "어벤져스: 인피니티 워",
+          "poster": "marvel_4",
+          "desc": "You should've gone for the head"
+        },
+        {
+          "name": "어벤져스: 엔드게임",
+          "poster": "marvel_5",
+          "desc": "이젠 가망이 없어"
+        }
+      ]
+    },
+    {
+      "name" : "애니메이션 감상",
+      "movies" : [
+        {
+          "name": "업",
+          "poster": "ani_1",
+          "desc": "고전명작"
+        },
+        {
+          "name": "겨울왕국",
+          "poster": "ani_2",
+          "desc": "고전명작2"
+        },
+        {
+          "name": "날씨의 아이",
+          "poster": "ani_3",
+          "desc": "이 세계 두번째 명작\n신카이마코토 그는 천재야"
+        },
+        {
+          "name": "너의 이름은.",
+          "poster": "ani_4",
+          "desc": "이 세계 최고의 명작\n신카이마코토 그는 천재야"
+        },
+        {
+          "name": "극장판 귀멸의 칼날: 무한열차편",
+          "poster": "ani_5",
+          "desc": "귀신잡는 해병대"
+        }
+      ]
+    }
+  ]
+}
