@@ -1,0 +1,1010 @@
+diff --git a/Day5/.idea/misc.xml b/Day5/.idea/misc.xml index 2b50b4a..ffd1a8d 
+100644 --- a/Day5/.idea/misc.xml +++ b/Day5/.idea/misc.xml @@ -3,12 +3,14 @@
+   <component name="DesignSurface"> <option name="filePathToZoomLevelMap"> 
+       <map>
+- <entry key="..\:/Backup/sunrinLife/2021/After School Class/mobile app 
+class/Day5/app/src/main/res/layout/activity_fragment.xml" value="0.22" /> + 
+<entry key="..\:/Backup/sunrinLife/2021/After School Class/mobile app 
+class/Day5/app/src/main/res/drawable/ic_vector.xml" 
+value="0.3697916666666667" /> + <entry key="..\:/Backup/sunrinLife/2021/After 
+School Class/mobile app 
+class/Day5/app/src/main/res/layout/activity_fragment.xml" value="0.33" />
+         <entry key="..\:/Backup/sunrinLife/2021/After School Class/mobile 
+         app class/Day5/app/src/main/res/layout/activity_main.xml" 
+         value="0.33" /> <entry key="..\:/Backup/sunrinLife/2021/After School 
+         Class/mobile app 
+         class/Day5/app/src/main/res/layout/activity_nav.xml" 
+         value="0.13768115942028986" /> <entry 
+         key="..\:/Backup/sunrinLife/2021/After School Class/mobile app 
+         class/Day5/app/src/main/res/layout/activity_sub.xml" 
+         value="0.16590678824721378" />
+- <entry key="..\:/Backup/sunrinLife/2021/After School Class/mobile app 
+class/Day5/app/src/main/res/layout/fragment_a.xml" value="0.1" /> + <entry 
+key="..\:/Backup/sunrinLife/2021/After School Class/mobile app 
+class/Day5/app/src/main/res/layout/fragment_a.xml" value="0.33" />
+         <entry key="..\:/Backup/sunrinLife/2021/After School Class/mobile 
+         app class/Day5/app/src/main/res/layout/fragment_b.xml" 
+         value="0.15881458966565348" />
++ <entry key="..\:/Backup/sunrinLife/2021/After School Class/mobile app 
+class/Day5/app/src/main/res/layout/fragment_c.xml" value="0.3536458333333333" 
+/>
+         <entry key="..\:/Backup/sunrinLife/2021/After School Class/mobile 
+         app class/Day5/app/src/main/res/menu/1.xml" value="0.1" /> <entry 
+         key="..\:/Backup/sunrinLife/2021/After School Class/mobile app 
+         class/Day5/app/src/main/res/menu/main_menu.xml" 
+         value="0.18802083333333333" />
+       </map> diff --git a/Day5/app/src/main/AndroidManifest.xml 
+b/Day5/app/src/main/AndroidManifest.xml index 6ab5707..e11a456 100644 --- 
+a/Day5/app/src/main/AndroidManifest.xml +++ 
+b/Day5/app/src/main/AndroidManifest.xml @@ -20,17 +20,12 @@
+                 <category android:name="android.intent.category.LAUNCHER" /> 
+             </intent-filter>
+         </activity> - <activity - android:name=".NavActivity" - 
+android:exported="true"></activity> - <activity + <activity
+             android:name=".SubActivity" android:exported="true" /> <activity 
+             android:name=".MainActivity"
+- android:exported="true"> - - </activity> + 
+android:exported="true"></activity>
+     </application>
+ 
+ </manifest> \ No newline at end of file diff --git 
+a/Day5/app/src/main/java/com/example/day5/CFragment.kt 
+b/Day5/app/src/main/java/com/example/day5/CFragment.kt index c2f420c..10dafb8 
+100644 --- a/Day5/app/src/main/java/com/example/day5/CFragment.kt +++ 
+b/Day5/app/src/main/java/com/example/day5/CFragment.kt @@ -6,54 +6,13 @@ 
+import android.view.LayoutInflater
+ import android.view.View import android.view.ViewGroup
+ 
+-// TODO: Rename parameter arguments, choose names that match -// the 
+fragment initialization parameters, e.g. ARG_ITEM_NUMBER -private const val 
+ARG_PARAM1 = "param1" -private const val ARG_PARAM2 = "param2" - -/** - * A 
+simple [Fragment] subclass. - * Use the [CFragment.newInstance] factory 
+method to - * create an instance of this fragment. - */
+ class CFragment : Fragment() { - // TODO: Rename and change types of 
+parameters - private var param1: String? = null - private var param2: String? 
+= null - - override fun onCreate(savedInstanceState: Bundle?) { - 
+super.onCreate(savedInstanceState) - arguments?.let { - param1 = 
+it.getString(ARG_PARAM1) - param2 = it.getString(ARG_PARAM2) - } - } -
+     override fun onCreateView( inflater: LayoutInflater, container: 
+         ViewGroup?, savedInstanceState: Bundle?
+     ): View? { - // Inflate the layout for this fragment - return 
+inflater.inflate(R.layout.fragment_c, container, false) - }
+ 
+- companion object { - /** - * Use this factory method to create a new 
+instance of - * this fragment using the provided parameters. - * - * @param 
+param1 Parameter 1. - * @param param2 Parameter 2. - * @return A new instance 
+of fragment CFragment. - */ - // TODO: Rename and change types and number of 
+parameters - @JvmStatic - fun newInstance(param1: String, param2: String) = - 
+CFragment().apply { - arguments = Bundle().apply { - putString(ARG_PARAM1, 
+param1) - putString(ARG_PARAM2, param2) - } - } + + return 
+inflater.inflate(R.layout.fragment_c, container, false)
+     }
+ }
+\ No newline at end of file diff --git 
+a/Day5/app/src/main/java/com/example/day5/FragmentActivity.kt 
+b/Day5/app/src/main/java/com/example/day5/FragmentActivity.kt index 
+fd236de..3ffbace 100644 --- 
+a/Day5/app/src/main/java/com/example/day5/FragmentActivity.kt +++ 
+b/Day5/app/src/main/java/com/example/day5/FragmentActivity.kt @@ -2,10 +2,16 
+@@ package com.example.day5
+ 
+ import androidx.appcompat.app.AppCompatActivity import android.os.Bundle 
++import android.widget.Button +import androidx.navigation.findNavController
+ 
+ class FragmentActivity : AppCompatActivity() { override fun 
+     onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState) 
+         setContentView(R.layout.activity_fragment)
++ + findViewById<Button>(R.id.btnB).setOnClickListener { + 
+findNavController(R.id.fragmentContainerView).navigate(R.id.) + }
+     }
+-} \ No newline at end of file +} diff --git 
+a/Day5/app/src/main/res/layout/activity_fragment.xml 
+b/Day5/app/src/main/res/layout/activity_fragment.xml index eb8c546..4c7ddd4 
+100644 --- a/Day5/app/src/main/res/layout/activity_fragment.xml +++ 
+b/Day5/app/src/main/res/layout/activity_fragment.xml @@ -4,6 +4,24 @@
+     xmlns:tools="http://schemas.android.com/tools" 
+     android:layout_width="match_parent" android:layout_height="match_parent"
+- tools:context=".FragmentActivity"> + tools:context=".FragmentActivity" + > 
++ + + <androidx.fragment.app.FragmentContainerView + 
+android:id="@+id/fragmentContainerView" + 
+android:name="androidx.navigation.fragment.NavHostFragment" + 
+android:layout_width="0dp" + android:layout_height="0dp" + 
+app:defaultNavHost="true" + app:navGraph="@navigation/main" + + + 
+app:layout_constraintTop_toTopOf="parent" + 
+app:layout_constraintBottom_toBottomOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintEnd_toEndOf="parent" + /> +
+ 
+ </androidx.constraintlayout.widget.ConstraintLayout> \ No newline at end of 
+file diff --git a/Day5/app/src/main/res/layout/fragment_a.xml 
+b/Day5/app/src/main/res/layout/fragment_a.xml index cc4316e..00048a9 100644 
+--- a/Day5/app/src/main/res/layout/fragment_a.xml +++ 
+b/Day5/app/src/main/res/layout/fragment_a.xml @@ -1,14 +1,46 @@
+ <?xml version="1.0" encoding="utf-8"?> -<FrameLayout 
+xmlns:android="http://schemas.android.com/apk/res/android" 
++<androidx.constraintlayout.widget.ConstraintLayout 
+xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" 
+     android:layout_width="match_parent" android:layout_height="match_parent"
++ xmlns:app="http://schemas.android.com/apk/res-auto" 
+     tools:context=".AFragment">
+ 
+- <!-- TODO: Update blank fragment layout --> <TextView - 
+android:layout_width="match_parent" - android:layout_height="match_parent" - 
+android:text="@string/hello_blank_fragment" /> + android:id="@+id/title" + 
+android:layout_width="wrap_content" + android:layout_height="wrap_content"
+ 
+-</FrameLayout> \ No newline at end of file + android:text="A Fragment" + 
+android:textSize="32sp" + + app:layout_constraintTop_toTopOf="parent" + 
+app:layout_constraintBottom_toBottomOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintEnd_toEndOf="parent" + /> + + <Button + 
+android:id="@+id/btnB" + android:layout_width="wrap_content" + 
+android:layout_height="wrap_content" + + android:text="B로 가기" + + 
+app:layout_constraintTop_toBottomOf="@+id/title" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintEnd_toStartOf="@+id/btnC" + /> + + <Button + 
+android:id="@+id/btnC" + android:layout_width="wrap_content" + 
+android:layout_height="wrap_content" + + android:text="C로 가기" + + 
+app:layout_constraintTop_toBottomOf="@id/title" + 
+app:layout_constraintStart_toEndOf="@+id/btnB" + 
+app:layout_constraintEnd_toEndOf="parent" + /> 
++</androidx.constraintlayout.widget.ConstraintLayout> \ No newline at end of 
+file diff --git a/Day5/app/src/main/res/layout/fragment_b.xml 
+b/Day5/app/src/main/res/layout/fragment_b.xml index c85b128..357d6ce 100644 
+--- a/Day5/app/src/main/res/layout/fragment_b.xml +++ 
+b/Day5/app/src/main/res/layout/fragment_b.xml @@ -1,14 +1,23 @@
+ <?xml version="1.0" encoding="utf-8"?> -<FrameLayout 
+xmlns:android="http://schemas.android.com/apk/res/android" 
++<androidx.constraintlayout.widget.ConstraintLayout 
+xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools" 
+     android:layout_width="match_parent" android:layout_height="match_parent"
++ xmlns:app="http://schemas.android.com/apk/res-auto" 
+     tools:context=".BFragment">
+ 
+     <!-- TODO: Update blank fragment layout --> <TextView - 
+android:layout_width="match_parent" - android:layout_height="match_parent" - 
+android:text="@string/hello_blank_fragment" /> + 
+android:layout_width="wrap_content" + android:layout_height="wrap_content"
+ 
+-</FrameLayout> \ No newline at end of file + android:text="B Fragment" + 
+android:textSize="32sp" + + app:layout_constraintTop_toTopOf="parent" + 
+app:layout_constraintBottom_toBottomOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintEnd_toEndOf="parent" + /> + 
++</androidx.constraintlayout.widget.ConstraintLayout> \ No newline at end of 
+file diff --git a/Day5/app/src/main/res/navigation/main.xml 
+b/Day5/app/src/main/res/navigation/main.xml index da31ecc..784e731 100644 --- 
+a/Day5/app/src/main/res/navigation/main.xml +++ 
+b/Day5/app/src/main/res/navigation/main.xml @@ -1,6 +1,34 @@
+ <?xml version="1.0" encoding="utf-8"?> <navigation 
+ xmlns:android="http://schemas.android.com/apk/res/android"
+- xmlns:app="http://schemas.android.com/apk/res-auto" - 
+android:id="@+id/main"> + xmlns:app="http://schemas.android.com/apk/res-auto" 
++ xmlns:tools="http://schemas.android.com/tools" + android:id="@+id/main" + 
+app:startDestination="@id/AFragment"> + + + <fragment + 
+android:id="@+id/AFragment" + android:name="com.example.day5.AFragment" + 
+android:label="fragment_a" + tools:layout="@layout/fragment_a" > + <action + 
+android:id="@+id/action_AFragment_to_bFragment" + 
+app:destination="@id/bFragment" /> + <action + 
+android:id="@+id/action_AFragment_to_CFragment" + 
+app:destination="@id/CFragment" /> + </fragment> + + <fragment + 
+android:id="@+id/bFragment" + android:name="com.example.day5.BFragment" + 
+android:label="fragment_b" + tools:layout="@layout/fragment_b" + /> + 
+<fragment + android:id="@+id/CFragment" + 
+android:name="com.example.day5.CFragment" + android:label="fragment_c" + 
+tools:layout="@layout/fragment_c" />
+ 
+ </navigation> \ No newline at end of file diff --git a/Day6/src/Adapter.kt 
+b/Day6/src/Adapter.kt index 2e8af18..3016d0d 100644 --- a/Day6/src/Adapter.kt 
++++ b/Day6/src/Adapter.kt @@ -7,6 +7,7 @@ interface EDCAN{
+     fun game()
+ 
+     fun noSleep(time : Int) + fun otaku()
+ }
+ 
+ class EDCANPeople : EDCAN{ @@ -37,12 +38,18 @@ class EDCANPeople : EDCAN{ 
+     override fun noSleep(time: Int) {
+         println("EDCAN이 잠을 잔다?")
+     }
++ + override fun otaku() { + println("사실 에드캔은 씹덕 동아리 였습니다") + 
+}
+ }
+ 
+ interface AppplePi{ fun coding(language : String) fun design() fun android() 
++ + fun firebase()
+     fun baking()
+ }
+ 
+@@ -59,10 +66,13 @@ class AppplePiPeople : AppplePi{ println("애플파이는 
+         안드로이드 개발 동아리 입니다.")
+     }
+ 
++ override fun firebase() { + println("애플파이에서는 파이어베이스도 배워요") 
++ } +
+     override fun baking() { println("맛있는 애플파이를 굽고있어요!")
+     }
+-
+ }
+ 
+ class EdcanplePi(val appPlePiPeople : AppplePiPeople) : EDCAN{ @@ -80,19 
++90,23 @@ class EdcanplePi(val appPlePiPeople : AppplePiPeople) : EDCAN{
+     }
+ 
+     override fun web() { - println("EDCAN은 웹도 하지") + println("EDCAN:ple 
+Pi는 웹을 하지")
+     }
+ 
+     override fun IoT() { - println("EDCAN은 IoT도 했지") + 
+println("EDCAN:ple Pi는 IoT도 했지")
+     }
+ 
+     override fun game() { - println("EDCAN은 게임도 했지") + 
+println("EDCAN:ple Pi는 게임도 했지")
+     }
+ 
+     override fun noSleep(time: Int) { - println("EDCAN이 잠을 잔다?") + 
+println("EDCAN:ple Pi는 잠을 잔다?") + } + + override fun otaku() { + 
+println("사실 여기도 씹덕 동아리 였습니다")
+     }
+ }
+ 
+@@ -107,10 +121,12 @@ fun Adapter() { student1.web() student1.IoT() 
+     student1.game()
++ student1.otaku()
+ 
+     student2.coding("JAVA") student2.design() student2.android() + 
+student2.firebase()
+     student2.baking()
+ 
+ 
+@@ -126,9 +142,12 @@ fun Adapter() {
+     }   catch (e : Exception){
+         println("안드로이드는 애플파이에서 담당합니다.")
+     }
++ + student3.web() student3.IoT() student3.game() + student3.otaku() 
+     student3.appPlePiPeople.coding("C") student3.appPlePiPeople.design() 
+     student3.appPlePiPeople.android()
+diff --git a/Day6/src/Builder.kt b/Day6/src/Builder.kt index ffea2f8..7e8ecd0 
+100644 --- a/Day6/src/Builder.kt +++ b/Day6/src/Builder.kt @@ -44,7 +44,7 @@ 
+class Bus() : CarBuilder(){
+ }
+ 
+ 
+-fun main(){ +fun Builder(){ val car1 = Suv() car1.setKinds() 
+     car1.setColors("검정색")
+diff --git a/Day6/src/Observer.kt b/Day6/src/Observer.kt index 
+555bf38..2d54ecd 100644 --- a/Day6/src/Observer.kt +++ b/Day6/src/Observer.kt 
+@@ -64,7 +64,7 @@ data class Passenger(val destination : Int, val p : 
+Observable) : Observer(p){
+ }
+ 
+ 
+-fun main_(){ +fun Observer(){ val elebvator = Elevator() val p1 = 
+     Passenger(10, elebvator) val p2 = Passenger(3, elebvator)
+diff --git a/Day6/src/main.kt b/Day6/src/main.kt index e69de29..1cd3442 
+100644 --- a/Day6/src/main.kt +++ b/Day6/src/main.kt @@ -0,0 +1,7 @@ +fun 
+main(){ +// Observer() +// +// Builder() + + Adapter() +} \ No newline at end 
+of file diff --git "a/Day6/\352\263\274\354\240\234 04 
+\353\263\264\352\263\240\354\204\234.docx" "b/Day6/\352\263\274\354\240\234 
+04 \353\263\264\352\263\240\354\204\234.docx" index 50ab609..d9e39b8 100644 
+--- "a/Day6/\352\263\274\354\240\234 04 
+\353\263\264\352\263\240\354\204\234.docx" +++ 
+"b/Day6/\352\263\274\354\240\234 04 
+\353\263\264\352\263\240\354\204\234.docx" @@ -1,4 +1,5 @@
+ 
++ - - -
+ 
+ 
+ 
+@@ -13,3 +14,320 @@ Observer 패턴 Observer는 관찰자라는 뜻을 가지고 있다. 
+ 이름에 나와 있듯이 observer패턴은 관찰을 해서 결과를 나타내는 패턴이다. 어떤 
+ 객체의 상태(멤버변수)가 바뀌었음을 관찰하고 바뀌었다면 결과에 영향을 받는 
+ 다른 객체들에게 코드를 실행하는 패턴이다. Observer 패턴은 트리구조와 비슷한 
+ 구조를 가지고 있고 이때 부모 노드는 관찰받는 객체, 자식 나드는 관찰에 대한 
+ 행위가 실행되는 객체이다.
++open class Observable{ + val observers = mutableListOf<Observer>() +} + 
++abstract class Observer(val parent : Observable){ + abstract fun upData() + 
+var rm = false + + fun addObserver(){ + parent.observers.add(this) + } + + 
+fun rmObserver(){ + parent.observers.remove(this) + } +} + +class Elevator() 
+: Observable() {
++ var now = 1 + + + init { + this.now = 1 + } + + fun up(){ + now += 1 + + 
+println("${now}층") + for(i in observers){ + if(!i.rm){ + i.upData() + } + } 
++ } + + fun down(){ + if(now < 1) now -1 + + println("${now}층") + + for(i in 
+observers){ + if(!i.rm){ + i.upData() + } + } + } +} + + +data class 
+Passenger(val destination : Int, val p : Observable) : Observer(p){ + init { 
++ addObserver() + } + + override fun upData() { + if((parent as Elevator).now 
+== destination){ + println("내립니다.") + rm = true + } else{ + println("저는 
+${destination}층에서 내립니다.") + } + } +} + + +fun main(){ + val elebvator 
+= Elevator() + val p1 = Passenger(10, elebvator) + val p2 = Passenger(3, 
+elebvator) + val p3 = Passenger(5, elebvator) + val p4 = Passenger(4, 
+elebvator) + + +// println(elebvator.observers.toString()) + + elebvator.up() 
++ elebvator.up() + elebvator.up() + elebvator.up() + elebvator.up() + 
+elebvator.up() + elebvator.up() + elebvator.up() + elebvator.up() + 
+elebvator.up() +} +Observer 패턴을 이용해서 엘리베이터 만들기 +코드의 
+문제점은 Observer이 지워지지 않는다. 그래서 rm이라는 Boolean 값을 가져서 
+지워짐을 표시하였습니다. + + +Builder 패턴 +Builder 패턴은 객체를 생성할 때 
+생성자를 사용하지 않고 만들어둔 setter와 getter를 사용해서 객체의 상태를 
+지정하는 패턴이고, 이때 Builder이라는 클래스에 setter와 getter 만들어주어 
+상속시켜준다. +open class Car(){ + protected var kind = "" + protected var 
+color = "" + protected var name = "" + protected var owner = "" + protected 
+var carId = 0 +} + +abstract class CarBuilder : Car(){ + abstract fun 
+setKinds() + fun setColors(color : String) { + this.color = color + } + fun 
+setNames(name: String) { + this.name = name + } + + fun setOwners(owner: 
+String) { + this.owner = owner + } + + fun setCarIDs(carId: Int) { + 
+this.carId = carId + } + + + fun getKinds() = kind + fun getColors() = color 
++ fun getNames() = name + fun getOwners() = owner + fun getCarIDs() = carId 
++} + +class Suv() : CarBuilder(){ + override fun setKinds() { + kind = "SUB" 
++ } +} + +class Bus() : CarBuilder(){ + override fun setKinds() { + kind = 
+"버스" + } +} + + +fun main(){ + val car1 = Suv() + car1.setKinds() + 
+car1.setColors("검정색") + car1.setNames("부릉이") + car1.setOwners("박희찬") 
++ car1.setCarIDs(1189) + + val car2 = Bus() + car2.setKinds() + 
+car2.setColors("초록색") + car2.setNames("타요") + car2.setOwners("바키찬") + 
+car2.setCarIDs(9999) +} + + +Adapter 패턴 +먼저 현실에서 Adapter란 서로 맞지 
+않는 두 물건을 연결해줄 때 사용한다. C타입 핸드폰에 A타입 충전기로 충전을 
+하려고할 때 어댑터를 사용하면 충전할 수 있다. +코딩에서 Adapter이란 서로 
+맞지않는 즉 관계가 없는 인터페이스들을 같이 사용할 수 있다. +두 인터페이스를 
+같이 상속받는 클래스에서 같은 메서드가 있다면 오버라이딩 하는 과정에서 에러가 
+발생할것이다. 이때는 하나의 인터페이스만 상속시켜주고, 다른 인터페이스는 
+생성자로 받아서 해결한다. 그리고 두 인터페이스의 메서드중 하나는 예외로 
+처리한다. + +interface EDCAN{ + fun coding(language : String) + fun design() 
++ fun android() + fun web() + fun IoT() + fun game() + + fun noSleep(time : 
+Int) + fun otaku() +} + +class EDCANPeople : EDCAN{ + override fun 
+coding(language: String) { + println("$language 언어 코딩중") + } + + 
+override fun design() { + println("에드캔 디자인은 세계 제일") + } + + 
+override fun android() { + println("EDCAN은 안드로이드를 하지") + } + + 
+override fun web() { + println("EDCAN은 웹도 하지") + } + + override fun 
+IoT() { + println("EDCAN은 IoT도 했지") + } + + override fun game() { + 
+println("EDCAN은 게임도 했지") + } + + override fun noSleep(time: Int) { + 
+println("EDCAN이 잠을 잔다?") + } + + override fun otaku() { + println("사실 
+에드캔은 씹덕 동아리 였습니다") + } +} + +interface AppplePi{ + fun 
+coding(language : String) + fun design() + fun android() + + fun firebase() + 
+fun baking() +} + +class AppplePiPeople : AppplePi{ + override fun 
+coding(language: String) { + println("$language 언어 코딩중") + } + + 
+override fun design() { + println("애플파이 디자인은 세계 제일") + } + + 
+override fun android() { + println("애플파이는 안드로이드 개발 동아리 
+입니다.") + } + + override fun firebase() { + println("애플파이에서는 
+파이어베이스도 배워요") + } + + override fun baking() { + println("맛있는 
+애플파이를 굽고있어요!") + } +} + +class EdcanplePi(val appPlePiPeople : 
+AppplePiPeople) : EDCAN{ + + override fun coding(language: String) { + 
+println("$language 언어 코딩중") + } + + override fun design() { + throw 
+Exception() + } + + override fun android() { + throw Exception() + } + + 
+override fun web() { + println("EDCAN:ple Pi는 웹을 하지") + } + + override 
+fun IoT() { + println("EDCAN:ple Pi는 IoT도 했지") + } + + override fun 
+game() { + println("EDCAN:ple Pi는 게임도 했지") + } + + override fun 
+noSleep(time: Int) { + println("EDCAN:ple Pi는 잠을 잔다?") + } + + override 
+fun otaku() { + println("사실 여기도 씹덕 동아리 였습니다") + } +} + +fun 
+main() { + val student1 = EDCANPeople() + val student2 = AppplePiPeople() + 
+val student3 = EdcanplePi(AppplePiPeople()) + + student1.coding("Kotlin") + 
+student1.design() + student1.android() + student1.web() + student1.IoT() + 
+student1.game() + student1.otaku() + + student2.coding("JAVA") + 
+student2.design() + student2.android() + student2.firebase() + 
+student2.baking() + + + student3.coding("C") + try{ + student3.design() + } 
+catch (e : Exception){ + println("디자인은 애플파이에서 담당합니다.") + } + + 
+try{ + student3.android() + } catch (e : Exception){ + println("안드로이드는 
+애플파이에서 담당합니다.") + } + + + student3.web() + student3.IoT() + 
+student3.game() + student3.otaku() + student3.appPlePiPeople.coding("C") + 
+student3.appPlePiPeople.design() + student3.appPlePiPeople.android() + 
+student3.appPlePiPeople.baking() +} + diff --git a/Day7/.idea/gradle.xml 
+b/Day7/.idea/gradle.xml index 4e3844e..526b4c2 100644 --- 
+a/Day7/.idea/gradle.xml +++ b/Day7/.idea/gradle.xml @@ -1,5 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?> <project version="4"> + <component 
+name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings"> <option 
+     name="linkedExternalProjectsSettings">
+       <GradleProjectSettings> diff --git 
+a/Day7/app/src/main/AndroidManifest.xml 
+b/Day7/app/src/main/AndroidManifest.xml index 97922ca..67f2efe 100644 --- 
+a/Day7/app/src/main/AndroidManifest.xml +++ 
+b/Day7/app/src/main/AndroidManifest.xml @@ -9,6 +9,9 @@
+         android:roundIcon="@mipmap/ic_launcher_round" 
+         android:supportsRtl="true" android:theme="@style/Theme.Day7">
++ <activity + android:name=".ReActivity" + android:exported="true" /> 
+         <activity
+             android:name=".MainActivity" android:exported="true"> diff --git 
+a/Day8/app/src/main/java/com/example/day8/AddColorActivity.kt 
+b/Day8/app/src/main/java/com/example/day8/AddColorActivity.kt index 
+278e942..3329b11 100644 --- 
+a/Day8/app/src/main/java/com/example/day8/AddColorActivity.kt +++ 
+b/Day8/app/src/main/java/com/example/day8/AddColorActivity.kt @@ -2,10 +2,48 
+@@ package com.example.day8
+ 
+ import androidx.appcompat.app.AppCompatActivity import android.os.Bundle 
++import android.view.View +import android.widget.Button +import 
+android.widget.SeekBar + +class AddColorActivity : AppCompatActivity(), 
+SeekBar.OnSeekBarChangeListener { + + private val redSeek : SeekBar by lazy { 
+findViewById(R.id.redSeekBar) } + private val greenSeek : SeekBar by lazy { 
+findViewById(R.id.greenSeekBar) } + private val blueSeek : SeekBar by lazy { 
+findViewById(R.id.blueSeekBar) } + + private val colorView : View by lazy { 
+findViewById(R.id.colorView) }
+ 
+-class AddColorActivity : AppCompatActivity() { override fun 
+     onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState) 
+         setContentView(R.layout.activity_add_color)
++ + redSeek.setOnSeekBarChangeListener(this) + 
+greenSeek.setOnSeekBarChangeListener(this) + 
+blueSeek.setOnSeekBarChangeListener(this) + + + 
+findViewById<Button>(R.id.btnAddColor).setOnClickListener { + Co + } + } + + 
+override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) { + val 
+newColor = android.graphics.Color.argb( + 255, redSeek.progress, 
+greenSeek.progress, blueSeek.progress + ) //시크바에서 새색상을 가져와서 새 
+색을 만든다. + + colorView.setBackgroundColor(newColor) + val hexColor = 
+String.format("#%06X", (0xFFFFFF and newColor)) + + + } + + override fun 
+onStartTrackingTouch(p0: SeekBar?) { + + } + + override fun 
+onStopTrackingTouch(p0: SeekBar?) { +
+     }
+ }
+\ No newline at end of file diff --git 
+a/Day8/app/src/main/java/com/example/day8/Color.kt 
+b/Day8/app/src/main/java/com/example/day8/Color.kt index c14bcd0..d1eca04 
+100644 --- a/Day8/app/src/main/java/com/example/day8/Color.kt +++ 
+b/Day8/app/src/main/java/com/example/day8/Color.kt @@ -1,3 +1,10 @@
+ package com.example.day8
+ 
+-data class Color() +import androidx.room.Entity + +@Entity(tableName = 
+"Colors") +data class Color( + val _id : Int = 0, + val hex : String, + val 
+name : String +) diff --git 
+a/Day8/app/src/main/java/com/example/day8/ColorAdapter.kt 
+b/Day8/app/src/main/java/com/example/day8/ColorAdapter.kt index 
+937e4f2..d99dead 100644 --- 
+a/Day8/app/src/main/java/com/example/day8/ColorAdapter.kt +++ 
+b/Day8/app/src/main/java/com/example/day8/ColorAdapter.kt @@ -1,4 +1,31 @@
+ package com.example.day8
+ 
+-class ColorAdapter { +import android.view.LayoutInflater +import 
+android.view.View +import android.view.ViewGroup +import 
+android.widget.TextView +import androidx.recyclerview.widget.RecyclerView + 
++class ColorAdapter(private val items : MutableList<Color>) : 
+RecyclerView.Adapter<ColorAdapter.VH>() { + override fun 
+onCreateViewHolder(parent: ViewGroup, viewType: Int): VH { + return 
+VH.from(parent) + } + + override fun onBindViewHolder(holder: VH, position: 
+Int) { + holder.txtColor.text = items[position].hex + 
+holder.view.setBackgroundColor(android.graphics.Color.parseColor(items[position].hex)) 
++ } + + override fun getItemCount(): Int { + return items.size + } + + class 
+VH(val view : View) : RecyclerView.ViewHolder(view){ + val txtColor = 
+view.findViewById<TextView>(R.id.txtColorCode) + companion object{ + fun 
+from(parent : ViewGroup) : VH{ + return 
+VH(LayoutInflater.from(parent.context).inflate(R.layout.color_item, parent, 
+false)) + } + } + }
+ }
+\ No newline at end of file diff --git 
+a/Day8/app/src/main/java/com/example/day8/ColorDatebase.kt 
+b/Day8/app/src/main/java/com/example/day8/ColorDatebase.kt index 
+711c01e..2dac9b2 100644 --- 
+a/Day8/app/src/main/java/com/example/day8/ColorDatebase.kt +++ 
+b/Day8/app/src/main/java/com/example/day8/ColorDatebase.kt @@ -1,4 +1,27 @@
+ package com.example.day8
+ 
+-class ColorDatebase { +import android.content.Context +import 
+androidx.room.Database +import androidx.room.Room +import 
+androidx.room.RoomDatabase + + +@Database(entities = [Color::class], version 
+= 1) +abstract class ColorDatebase : RoomDatabase() { + abstract fun 
+colorDao() : colorDao + companion object{ + @Volatile + private var INSTANCE 
+: ColorDatebase? = null
++ fun getInstance(context : Context) : ColorDatebase{ + return INSTANCE ?: 
+synchronized(this){ + INSTANCE ?: Room.databaseBuilder( + 
+context.applicationContext, + ColorDatebase::class.java, "color_database" + ) 
++ .fallbackToDestructiveMigration() + .build() + .also{ INSTANCE = it} + } + 
+}
++ }
+ }
+\ No newline at end of file diff --git 
+a/Day8/app/src/main/java/com/example/day8/colorDao.kt 
+b/Day8/app/src/main/java/com/example/day8/colorDao.kt index 4b2fc0c..702d971 
+100644 --- a/Day8/app/src/main/java/com/example/day8/colorDao.kt +++ 
+b/Day8/app/src/main/java/com/example/day8/colorDao.kt @@ -1,4 +1,16 @@
+ package com.example.day8
+ 
+-class colorDao { +import androidx.room.* + +@Dao +interface colorDao { + 
+@Query("SELECT * FROM colors") + fun getAll() : Array<Color> + + @Insert + 
+fun insert(vararg color : Color) + @Update + fun update(color : Color) + 
+@Delete + fun delete(color : Color)
+ }
+\ No newline at end of file diff --git 
+a/Day8/app/src/main/res/layout/activity_add_color.xml 
+b/Day8/app/src/main/res/layout/activity_add_color.xml index 8ba11fc..d766d90 
+100644 --- a/Day8/app/src/main/res/layout/activity_add_color.xml +++ 
+b/Day8/app/src/main/res/layout/activity_add_color.xml @@ -6,4 +6,137 @@
+     android:layout_height="match_parent" tools:context=".AddColorActivity">
+ 
++ <androidx.cardview.widget.CardView + android:layout_width="match_parent" + 
+android:layout_height="wrap_content" + android:layout_marginStart="8dp" + 
+android:layout_marginTop="8dp" + android:layout_marginEnd="8dp" + 
+app:cardCornerRadius="16dp" + app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toTopOf="parent"> + + 
+<androidx.constraintlayout.widget.ConstraintLayout + 
+android:layout_width="match_parent" + android:layout_height="match_parent"> + 
++ <View + android:id="@+id/colorView" + android:layout_width="0dp" + 
+android:layout_height="0dp" + app:layout_constraintDimensionRatio="w,1:2" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toTopOf="parent" /> + + <TextView + 
+android:id="@+id/txtRed" + android:layout_width="wrap_content" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:layout_marginTop="16dp" + android:text="R" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toBottomOf="@+id/colorView" /> + + <SeekBar + 
+android:id="@+id/redSeekBar" + android:layout_width="0dp" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:layout_marginEnd="16dp" + android:max="255" + android:min="0" + 
+app:layout_constraintBottom_toBottomOf="@+id/txtRed" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintHorizontal_bias="0.0" + 
+app:layout_constraintStart_toEndOf="@+id/txtRed" + 
+app:layout_constraintTop_toTopOf="@+id/txtRed" + 
+app:layout_constraintVertical_bias="1.0" /> + + <TextView + 
+android:id="@+id/textView2" + android:layout_width="wrap_content" + 
+android:layout_height="wrap_content" + android:layout_marginTop="16dp" + 
+android:text="G" + app:layout_constraintStart_toStartOf="@+id/txtRed" + 
+app:layout_constraintTop_toBottomOf="@+id/txtRed" /> + + <TextView + 
+android:id="@+id/textView3" + android:layout_width="wrap_content" + 
+android:layout_height="wrap_content" + android:layout_marginTop="16dp" + 
+android:text="B" + app:layout_constraintStart_toStartOf="@+id/textView2" + 
+app:layout_constraintTop_toBottomOf="@+id/textView2" /> + + <SeekBar + 
+android:id="@+id/greenSeekBar" + android:layout_width="0dp" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:layout_marginEnd="16dp" + android:max="255" + 
+app:layout_constraintBottom_toBottomOf="@+id/textView2" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toEndOf="@+id/textView2" + 
+app:layout_constraintTop_toTopOf="@+id/textView2" /> + + <EditText + 
+android:id="@+id/editTextColorTitle" + android:layout_width="0dp" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:layout_marginTop="16dp" + android:layout_marginEnd="16dp" + 
+android:ems="10" + android:inputType="textPersonName" + 
+android:minHeight="48dp" + android:text="Name" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toBottomOf="@+id/textView3" /> + + <SeekBar + 
+android:id="@+id/blueSeekBar" + android:layout_width="0dp" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:layout_marginEnd="16dp" + android:max="255" + 
+app:layout_constraintBottom_toBottomOf="@+id/textView3" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toEndOf="@+id/textView3" + 
+app:layout_constraintTop_toTopOf="@+id/textView3" /> + + <Button + 
+android:id="@+id/btnAddColor" + android:layout_width="0dp" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:layout_marginTop="16dp" + android:layout_marginEnd="16dp" + 
+android:layout_marginBottom="16dp" + android:text="ADD COLOR" + 
+app:layout_constraintBottom_toBottomOf="parent" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toBottomOf="@+id/editTextColorTitle" /> + + 
+<TextView + android:id="@+id/txtColorHex" + 
+android:layout_width="wrap_content" + android:layout_height="wrap_content" + 
+android:text="TextView" + 
+android:textAppearance="@style/TextAppearance.AppCompat.Large" + 
+app:layout_constraintBottom_toBottomOf="@+id/colorView" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="@+id/colorView" + 
+app:layout_constraintTop_toTopOf="@+id/colorView" /> + 
+</androidx.constraintlayout.widget.ConstraintLayout> + 
+</androidx.cardview.widget.CardView> +
+ </androidx.constraintlayout.widget.ConstraintLayout> \ No newline at end of 
+file diff --git a/Day8/app/src/main/res/layout/activity_color_detale.xml 
+b/Day8/app/src/main/res/layout/activity_color_detale.xml index 
+d25d887..5eea00e 100644 --- 
+a/Day8/app/src/main/res/layout/activity_color_detale.xml +++ 
+b/Day8/app/src/main/res/layout/activity_color_detale.xml @@ -4,6 +4,48 @@
+     xmlns:tools="http://schemas.android.com/tools" 
+     android:layout_width="match_parent" android:layout_height="match_parent"
+- tools:context=".ColorDetaleActivity"> + tools:context=".ColorDetale 
+Activity">
+ 
++ <View + android:id="@+id/colorDetailView" + android:layout_width="0dp" + 
+android:layout_height="0dp" + app:layout_constraintDimensionRatio="w,1:2" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toTopOf="parent" /> + + <TextView + 
+android:id="@+id/txtColorName" + android:layout_width="wrap_content" + 
+android:layout_height="wrap_content" + android:layout_marginTop="16dp" + 
+android:text="red" + 
+android:textAppearance="@style/TextAppearance.AppCompat.Large" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toBottomOf="@+id/colorDetailView" /> + + <TextView + 
+android:id="@+id/txtHex" + android:layout_width="wrap_content" + 
+android:layout_height="wrap_content" + android:layout_marginTop="8dp" + 
+android:text="#FFFFF" + 
+android:textAppearance="@style/TextAppearance.AppCompat.Medium" + 
+app:layout_constraintEnd_toEndOf="@+id/txtColorName" + 
+app:layout_constraintStart_toStartOf="@+id/txtColorName" + 
+app:layout_constraintTop_toBottomOf="@+id/txtColorName" /> + + <Button + 
+android:id="@+id/btnRemove" + android:layout_width="0dp" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:layout_marginEnd="16dp" + android:layout_marginBottom="8dp" + 
+android:text="REMOVE COLOR" + app:layout_constraintBottom_toBottomOf="parent" 
++ app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" />
+ </androidx.constraintlayout.widget.ConstraintLayout> \ No newline at end of 
+file diff --git a/Day9/app/src/main/java/com/example/day9/Moshi.kt 
+b/Day9/app/src/main/java/com/example/day9/Moshi.kt index 65eecdc..719d1b8 
+100644 --- a/Day9/app/src/main/java/com/example/day9/Moshi.kt +++ 
+b/Day9/app/src/main/java/com/example/day9/Moshi.kt @@ -1,3 +1,13 @@
+ package com.example.day9
+ 
+-data class Moshi() +import com.squareup.moshi.JsonClass + 
++@JsonClass(generateAdapter = true) +data class Post( + val title : String, + 
+val description : String, + val url : String, + val updated : String, + val 
+thumbnail : String, + val closedCaption : String? +) diff --git 
+a/Day9/app/src/main/java/com/example/day9/SimpleService.kt 
+b/Day9/app/src/main/java/com/example/day9/SimpleService.kt index 
+2e191a1..f44516d 100644 --- 
+a/Day9/app/src/main/java/com/example/day9/SimpleService.kt +++ 
+b/Day9/app/src/main/java/com/example/day9/SimpleService.kt @@ -1,4 +1,18 @@
+ package com.example.day9
+ 
++import retrofit2.http.* +import 
+java.nio.file.attribute.PosixFileAttributeView +
+ interface SimpleService { + @GET("posts") + suspend fun listAll() : 
+List<Post> + + @GET("posts/{userId}") + suspend fun 
+listByUser(@Path("userId") userId : String) : List<Post> + + 
+@GET("posts/search") + suspend fun search(@Query("filter") search : String) : 
+List<Post> + + @POST("posts/new") + suspend fun create(@Body post : Post) : 
+Post
+ }
+\ No newline at end of file diff --git 
+a/Day9/app/src/main/java/com/example/day9/YoutubeInfoAPI.kt 
+b/Day9/app/src/main/java/com/example/day9/YoutubeInfoAPI.kt index 
+a08507f..1481474 100644 --- 
+a/Day9/app/src/main/java/com/example/day9/YoutubeInfoAPI.kt +++ 
+b/Day9/app/src/main/java/com/example/day9/YoutubeInfoAPI.kt @@ -1,4 +1,21 @@
+ package com.example.day9
+ 
++import retrofit2.http.GET +import retrofit2.http.Query + interface 
+ YoutubeInfoAPI {
++ @GET("videos") + suspend fun getVideoInfo( + @Query("id") + id : String, + 
++ @Query("key") + key : String, + + @Query("part") + part : String = 
+"snippet,contentDetails", + + @Query("fields") + fields : String = 
+"items(id,snippet(title,channelTitle,description,thumbnails(high(url))),contentDetails(duration))" 
++ ) : YoutubeRetrofitEntity
+ }
+\ No newline at end of file diff --git 
+a/Day9/app/src/main/java/com/example/day9/YoutubeRetrofitEntity.kt 
+b/Day9/app/src/main/java/com/example/day9/YoutubeRetrofitEntity.kt index 
+e3c0985..3af159d 100644 --- 
+a/Day9/app/src/main/java/com/example/day9/YoutubeRetrofitEntity.kt +++ 
+b/Day9/app/src/main/java/com/example/day9/YoutubeRetrofitEntity.kt @@ -1,3 
++1,63 @@
+ package com.example.day9
+ 
+-data class YoutubeRetrofitEntity() +import 
+com.google.gson.annotations.Expose +import 
+com.google.gson.annotations.SerializedName +import java.time.Duration + 
++//import com.google.gson.annotations.Expose + +data class 
+YoutubeRetrofitEntity( + @Expose + @SerializedName("items") + val itemsEntity 
+: List<ItemsEntity>
++) + +data class ItemsEntity( + @Expose + @SerializedName("id") + val id : 
+String, + + @Expose + @SerializedName("snippet") + val snippet : 
+SinppetEntity, + + @Expose + @SerializedName("contentDetails") + val 
+duration: ContentDetailsEtity +) + +data class ContentDetailsEtity( + @Expose 
++ @SerializedName("duration") + val duration : String +) + +data class 
+SinppetEntity( + @Expose + @SerializedName("title") + val title : String, + + 
+@Expose + @SerializedName("thumbnails") + val thumbnails : ThumbnailsEntity, 
++ + @Expose + @SerializedName("channelTitle") + val channelTitle : String, + 
++ @Expose + @SerializedName("description") + val description : String +) + 
++data class ThumbnailsEntity( + @Expose + @SerializedName("high") + val high 
+: ThumbnailEntity
++) + +data class ThumbnailEntity( + @Expose + @SerializedName("url") + val 
+url : String +) \ No newline at end of file diff --git 
+a/Day91/app/src/main/java/com/example/day9_1/YoutubeInfoAPI.kt 
+b/Day91/app/src/main/java/com/example/day9_1/YoutubeInfoAPI.kt index 
+79bc53d..0c00a2a 100644 --- 
+a/Day91/app/src/main/java/com/example/day9_1/YoutubeInfoAPI.kt +++ 
+b/Day91/app/src/main/java/com/example/day9_1/YoutubeInfoAPI.kt @@ -1,17 +1,14 
+@@
+ package com.example.day9_1
+ 
++import retrofit2.Retrofit import retrofit2.http.*
+ 
+-interface Youtube { - @GET("posts") - suspend fun listAll() : List<Post> - - 
+@GET("posts/{userId}") - suspend fun listByUser(@Path("userId") userId : 
+String) : List<Post> - - @GET("posts/search") - suspend fun 
+search(@Query("filter") search : String) : List<Post> - - @POST("posts/new") 
+- suspend fun create(@Body post : Post) : Post +interface YoutubeInfoAPI { + 
+@GET("videos") + suspend fun getVideoInfo( + @Query("id") id : String, + 
+@Query("key") key : String, + @Query("part") park : String = 
+"snippet,contentDetails", + @Query("fields") fields : String = 
+"items(id,snippet(title,channelTitle,description,thumbnails(high(url))),contentDetails(duration))", 
++ ) : YoutubeRetrofitEntity
+ }
+\ No newline at end of file diff --git 
+a/Day91/app/src/main/java/com/example/day9_1/YoutubeRetrofitEntity.kt 
+b/Day91/app/src/main/java/com/example/day9_1/YoutubeRetrofitEntity.kt index 
+42eb499..c514a2b 100644 --- 
+a/Day91/app/src/main/java/com/example/day9_1/YoutubeRetrofitEntity.kt +++ 
+b/Day91/app/src/main/java/com/example/day9_1/YoutubeRetrofitEntity.kt @@ -2,7 
++2,6 @@ package com.example.day9_1
+ 
+ import com.google.gson.annotations.Expose import 
+ com.google.gson.annotations.SerializedName
+-import java.time.Duration
+ 
+ data class YoutubeRetrofitEntity( @Expose @@ -20,7 +19,7 @@ data class 
+ItemsEntity (
+     val snippet : SnippetEntity,
+ 
+     @Expose - @SerializedName("contentDatails") + 
+@SerializedName("contentDetails")
+     val contentDetails : ContentDetailsEntity )
+ 
+@@ -38,5 +37,25 @@ data class SnippetEntity(
+ 
+     @Expose @SerializedName("thumbnails") - val thumbnails: ThumbnailsEntity 
++ val thumbnails: ThumbnailsEntity, + + @Expose + 
+@SerializedName("channelTitle") + val channelTitle : String, + + @Expose + 
+@SerializedName("description") + val description : String +) + +data class 
+ThumbnailsEntity( + @Expose + @SerializedName("high") + val high : 
+ThumbnailEntity +) + +data class ThumbnailEntity( + @Expose + 
+@SerializedName("url") + val url : String
+ ) diff --git a/day 
+81/app/src/main/java/com/example/day8_1/AddColorActivity.kt b/day 
+81/app/src/main/java/com/example/day8_1/AddColorActivity.kt index 
+2c0d0b8..2eec801 100644 --- a/day 
+81/app/src/main/java/com/example/day8_1/AddColorActivity.kt +++ b/day 
+81/app/src/main/java/com/example/day8_1/AddColorActivity.kt @@ -1,11 +1,68 @@
+ package com.example.day8_1
+ 
++import android.graphics.Color import 
+ androidx.appcompat.app.AppCompatActivity import android.os.Bundle
++import android.widget.SeekBar +import androidx.databinding.DataBindingUtil 
++import com.example.day8_1.Model.ColorDatabase +import 
+com.example.day8_1.databinding.ActivityAddColorBinding +import 
+kotlinx.coroutines.CoroutineScope +import kotlinx.coroutines.Dispatchers 
++import kotlinx.coroutines.launch + +class AddColorActivity : 
+AppCompatActivity(), SeekBar.OnSeekBarChangeListener { + private lateinit var 
+binding : ActivityAddColorBinding + private val db : ColorDatabase by lazy { 
++ ColorDatabase.getInstance(applicationContext) + }
+ 
+-class AddColorActivity : AppCompatActivity() { override fun 
+     onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState) - 
+setContentView(R.layout.activity_add_color) + binding = 
+DataBindingUtil.setContentView(this, R.layout.activity_add_color) + + 
+with(binding) { + 
+redSeekBar.setOnSeekBarChangeListener(this@AddColorActivity) + 
+greenSeekBar.setOnSeekBarChangeListener(this@AddColorActivity) + 
+blueSeekBar.setOnSeekBarChangeListener(this@AddColorActivity) + + 
+btnAddColor.setOnClickListener { + CoroutineScope(Dispatchers.IO).launch { + 
+db.colorDao().insert( + com.example.day8_1.Model.Color( + hex = 
+txtColorHex.text.toString(), + name = editTextColorTitle.text.toString() + ) 
++ ) + setResult(RESULT_OK) + finish() + } + } + }
+     }
++ + override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) { + 
+with(binding){ + if(p2){ + val newColor = Color.argb(255, + 
+redSeekBar.progress, + greenSeekBar.progress, + blueSeekBar.progress, + ) + + 
+colorView.setBackgroundColor(newColor) + val hexColor = 
+String.format("#%06X", (0xFFFFFF and newColor)) + txtColorHex.text = hexColor 
++ + + txtAddColorRedPersent.text = redSeekBar.progress.toString() + 
+txtAddColorGreenPersent.text = greenSeekBar.progress.toString() + 
+txtAddColorBluePersent.text = blueSeekBar.progress.toString() + } + } + } + + 
+override fun onStartTrackingTouch(p0: SeekBar?) {} + + override fun 
+onStopTrackingTouch(p0: SeekBar?) {}
+ }
+\ No newline at end of file diff --git a/day 
+81/app/src/main/java/com/example/day8_1/ColorAdapter.kt b/day 
+81/app/src/main/java/com/example/day8_1/ColorAdapter.kt index 
+51a3df4..7767e3d 100644 --- a/day 
+81/app/src/main/java/com/example/day8_1/ColorAdapter.kt +++ b/day 
+81/app/src/main/java/com/example/day8_1/ColorAdapter.kt @@ -1,4 +1,49 @@
+ package com.example.day8_1
+ 
+-class ColorAdapter { +import android.content.Intent +import 
+android.graphics.Color +import android.view.LayoutInflater +import 
+android.view.View +import android.view.ViewGroup +import 
+android.widget.TextView +import androidx.recyclerview.widget.RecyclerView + 
++class ColorAdapter(private val items : 
+MutableList<com.example.day8_1.Model.Color>) : 
++RecyclerView.Adapter<ColorAdapter.ColorViewHolder>() { + class 
+ColorViewHolder(val view : View) : RecyclerView.ViewHolder(view){ + val 
+textColorCode = view.findViewById<TextView>(R.id.txtColorCode) + companion 
+object{ + fun from(parent : ViewGroup) : ColorViewHolder{ + return 
+ColorViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.color_item, 
+parent, false)) + } + } + } + + override fun onCreateViewHolder(parent: 
+ViewGroup, viewType: Int): ColorViewHolder { + return 
+ColorViewHolder.from(parent) + } + + override fun onBindViewHolder(holder: 
+ColorViewHolder, position: Int) { + holder.textColorCode.text = 
+items[position].hex + 
+holder.view.setBackgroundColor(Color.parseColor(items[position].hex)) + + 
+holder.view.setOnClickListener { + val intent = Intent( + 
+holder.view.context, ColorDetailActivity::class.java + ) + 
+intent.putExtra("color", items[position]) + + 
+holder.view.context.startActivity(intent) + } + } + + override fun 
+getItemCount(): Int { + return items.size + } + + fun changeData(newItems : 
+List<com.example.day8_1.Model.Color>){ + items.clear() + 
+items.addAll(newItems) + notifyDataSetChanged() + }
+ }
+\ No newline at end of file diff --git a/day 
+81/app/src/main/java/com/example/day8_1/ColorDetailActivity.kt b/day 
+81/app/src/main/java/com/example/day8_1/ColorDetailActivity.kt index 
+8f82198..32e7c99 100644 --- a/day 
+81/app/src/main/java/com/example/day8_1/ColorDetailActivity.kt +++ b/day 
+81/app/src/main/java/com/example/day8_1/ColorDetailActivity.kt @@ -2,10 +2,37 
+@@ package com.example.day8_1
+ 
+ import androidx.appcompat.app.AppCompatActivity import android.os.Bundle 
++import android.view.View +import android.widget.Button +import 
+android.widget.TextView +import com.example.day8_1.Model.Color +import 
+com.example.day8_1.Model.ColorDatabase +import 
+kotlinx.coroutines.CoroutineScope +import kotlinx.coroutines.Dispatchers 
++import kotlinx.coroutines.launch
+ 
+ class ColorDetailActivity : AppCompatActivity() { + private val db : 
+ColorDatabase by lazy { + ColorDatabase.getInstance(applicationContext) + } +
+     override fun onCreate(savedInstanceState: Bundle?) { 
+         super.onCreate(savedInstanceState) 
+         setContentView(R.layout.activity_color_detail)
++ + + val color = intent.getSerializableExtra("color") as Color + 
+findViewById<View>(R.id.colorDetailView).setBackgroundColor( + 
+android.graphics.Color.parseColor(color.hex) + ) + 
+findViewById<TextView>(R.id.txtHex).text = color.hex + 
+findViewById<TextView>(R.id.txtColorName).text = color.name + + 
+findViewById<Button>(R.id.btnRemove).setOnClickListener { + 
+CoroutineScope(Dispatchers.IO).launch { + db.colorDao().delete(color) + 
+finish() + } + }
+     }
+ }
+\ No newline at end of file diff --git a/day 
+81/app/src/main/java/com/example/day8_1/Model/Color.kt b/day 
+81/app/src/main/java/com/example/day8_1/Model/Color.kt index d8c1ee4..de5226d 
+100644 --- a/day 81/app/src/main/java/com/example/day8_1/Model/Color.kt +++ 
+b/day 81/app/src/main/java/com/example/day8_1/Model/Color.kt @@ -1,8 +1,9 @@ 
+-package com.example.day8_1 +package com.example.day8_1.Model
+ 
+ import androidx.room.ColumnInfo import androidx.room.Entity import 
+ androidx.room.PrimaryKey
++import java.io.Serializable
+ 
+ @Entity(tableName = "colors") data class Color( @@ -13,4 +14,4 @@ data class 
+Color(
+     val hex : String,
+ 
+     val name : String, -) +) : Serializable diff --git a/day 
+81/app/src/main/java/com/example/day8_1/Model/ColorDao.kt b/day 
+81/app/src/main/java/com/example/day8_1/Model/ColorDao.kt index 
+60f06fa..cfdeab9 100644 --- a/day 
+81/app/src/main/java/com/example/day8_1/Model/ColorDao.kt +++ b/day 
+81/app/src/main/java/com/example/day8_1/Model/ColorDao.kt @@ -1,4 +1,4 @@ 
+-package com.example.day8_1 +package com.example.day8_1.Model
+ 
+ import androidx.room.*
+ 
+diff --git a/day 
+81/app/src/main/java/com/example/day8_1/Model/ColorDatabase.kt b/day 
+81/app/src/main/java/com/example/day8_1/Model/ColorDatabase.kt index 
+69c06f7..f976c7f 100644 --- a/day 
+81/app/src/main/java/com/example/day8_1/Model/ColorDatabase.kt +++ b/day 
+81/app/src/main/java/com/example/day8_1/Model/ColorDatabase.kt @@ -1,19 +1,18 
+@@ -package com.example.day8_1 +package com.example.day8_1.Model
+ 
+ import android.content.Context import androidx.room.Database import 
+ androidx.room.Room import androidx.room.RoomDatabase
+-import kotlin.coroutines.CoroutineContext
+ 
+ @Database(entities = [Color::class], version = 1) abstract class 
+ ColorDatabase : RoomDatabase(){
+- abstract fun colorDat() : ColorDao + abstract fun colorDao() : ColorDao
+ 
+     companion object{ @Volatile private var INSTANCE : ColorDatabase? = null 
+- fun getInstance(context: Context) : ColorDatabase{ + fun 
+getInstance(context: Context) : ColorDatabase {
+             return INSTANCE ?: synchronized(this){ INSTANCE ?: 
+                 Room.databaseBuilder(
+                     context.applicationContext, diff --git a/day 
+81/app/src/main/res/layout/activity_add_color.xml b/day 
+81/app/src/main/res/layout/activity_add_color.xml index 8ba11fc..6b1abe0 
+100644 --- a/day 81/app/src/main/res/layout/activity_add_color.xml +++ b/day 
+81/app/src/main/res/layout/activity_add_color.xml @@ -1,9 +1,192 @@
+ <?xml version="1.0" encoding="utf-8"?> 
+-<androidx.constraintlayout.widget.ConstraintLayout 
+xmlns:android="http://schemas.android.com/apk/res/android" +<layout 
+xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto" - 
+xmlns:tools="http://schemas.android.com/tools" - 
+android:layout_width="match_parent" - android:layout_height="match_parent" - 
+tools:context=".AddColorActivity"> + 
+xmlns:tools="http://schemas.android.com/tools">
+ 
+-</androidx.constraintlayout.widget.ConstraintLayout> \ No newline at end of 
+file + <data> + + </data> + + 
+<androidx.constraintlayout.widget.ConstraintLayout + 
+android:layout_width="match_parent" + android:layout_height="match_parent" + 
+tools:context=".AddColorActivity"> + + <androidx.cardview.widget.CardView + 
+android:layout_width="match_parent" + android:layout_height="wrap_content" + 
+android:layout_marginStart="8dp" + android:layout_marginTop="8dp" + 
+android:layout_marginEnd="8dp" + app:cardCornerRadius="16dp" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toTopOf="parent"> + + 
+<androidx.constraintlayout.widget.ConstraintLayout + 
+android:layout_width="match_parent" + android:layout_height="match_parent"> + 
++ <View + android:id="@+id/colorView" + android:layout_width="0dp" + 
+android:layout_height="0dp" + app:layout_constraintDimensionRatio="w,1:2" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintHorizontal_bias="0.0" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toTopOf="parent" /> + <TextView + 
+android:id="@+id/txtColorHex" + android:layout_width="wrap_content" + 
+android:layout_height="wrap_content" + android:text="#000000" + 
+android:textAppearance="@style/TextAppearance.AppCompat.Large" + 
+app:layout_constraintBottom_toBottomOf="@+id/colorView" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="@+id/colorView" + 
+app:layout_constraintTop_toTopOf="@+id/colorView" /> + + + + <TextView + 
+android:id="@+id/txtRed" + android:layout_width="wrap_content" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:layout_marginTop="16dp" + android:text="R" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toBottomOf="@+id/colorView" /> + <SeekBar + 
+android:id="@+id/redSeekBar" + android:layout_width="0dp" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + + 
+android:max="255" + android:min="0" + 
+app:layout_constraintBottom_toBottomOf="@+id/txtRed" + 
+app:layout_constraintEnd_toStartOf="@id/txt_addColor_redPersent" + 
+app:layout_constraintStart_toEndOf="@+id/txtRed" + 
+app:layout_constraintTop_toTopOf="@+id/txtRed" /> + <TextView + 
+android:id="@+id/txt_addColor_redPersent" + 
+android:layout_width="wrap_content" + android:layout_height="wrap_content" + 
++ android:text="000" + android:layout_marginEnd="16dp" + + 
+app:layout_constraintTop_toTopOf="@id/txtRed" + 
+app:layout_constraintBottom_toBottomOf="@id/txtRed" + 
+app:layout_constraintStart_toEndOf="@+id/redSeekBar" + 
+app:layout_constraintEnd_toEndOf="parent" + /> + + + + <TextView + 
+android:id="@+id/textView2" + android:layout_width="wrap_content" + 
+android:layout_height="wrap_content" + android:layout_marginTop="16dp" + 
+android:text="G" + app:layout_constraintStart_toStartOf="@+id/txtRed" + 
+app:layout_constraintTop_toBottomOf="@+id/txtRed" /> + <SeekBar + 
+android:id="@+id/greenSeekBar" + android:layout_width="0dp" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:max="255" + app:layout_constraintBottom_toBottomOf="@+id/textView2" + 
+app:layout_constraintEnd_toStartOf="@id/txt_addColor_greenPersent" + 
+app:layout_constraintStart_toEndOf="@+id/textView2" + 
+app:layout_constraintTop_toTopOf="@+id/textView2" /> + <TextView + 
+android:id="@+id/txt_addColor_greenPersent" + 
+android:layout_width="wrap_content" + android:layout_height="wrap_content" + 
++ android:text="000" + + android:layout_marginEnd="16dp" + + 
+app:layout_constraintTop_toTopOf="@id/textView2" + 
+app:layout_constraintBottom_toBottomOf="@id/textView2" + 
+app:layout_constraintStart_toEndOf="@id/greenSeekBar" + 
+app:layout_constraintEnd_toEndOf="parent" + /> + + + + + <TextView + 
+android:id="@+id/textView3" + android:layout_width="wrap_content" + 
+android:layout_height="wrap_content" + android:layout_marginTop="16dp" + 
+android:text="B" + app:layout_constraintStart_toStartOf="@+id/textView2" + 
+app:layout_constraintTop_toBottomOf="@+id/textView2" /> + <SeekBar + 
+android:id="@+id/blueSeekBar" + android:layout_width="0dp" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:max="255" + app:layout_constraintBottom_toBottomOf="@+id/textView3" + 
+app:layout_constraintEnd_toStartOf="@+id/txt_addColor_bluePersent" + 
+app:layout_constraintStart_toEndOf="@+id/textView3" + 
+app:layout_constraintTop_toTopOf="@+id/textView3" + /> + <TextView + 
+android:id="@+id/txt_addColor_bluePersent" + 
+android:layout_width="wrap_content" + android:layout_height="wrap_content" + 
++ android:text="000" + android:layout_marginEnd="16dp" + + 
+app:layout_constraintTop_toTopOf="@id/textView3" + 
+app:layout_constraintBottom_toBottomOf="@id/textView3" + 
+app:layout_constraintEnd_toEndOf="parent" + /> + + + <EditText + 
+android:id="@+id/editTextColorTitle" + android:layout_width="0dp" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:layout_marginTop="16dp" + android:layout_marginEnd="16dp" + 
+android:ems="10" + android:inputType="textPersonName" + 
+android:minHeight="48dp" + android:text="Name" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toBottomOf="@+id/textView3" /> + + + + <Button + 
+android:id="@+id/btnAddColor" + android:layout_width="0dp" + 
+android:layout_height="wrap_content" + android:layout_marginStart="16dp" + 
+android:layout_marginTop="16dp" + android:layout_marginEnd="16dp" + 
+android:layout_marginBottom="16dp" + android:text="ADD COLOR" + 
+app:layout_constraintBottom_toBottomOf="parent" + 
+app:layout_constraintEnd_toEndOf="parent" + 
+app:layout_constraintStart_toStartOf="parent" + 
+app:layout_constraintTop_toBottomOf="@+id/editTextColorTitle" /> + 
+</androidx.constraintlayout.widget.ConstraintLayout> + 
+</androidx.cardview.widget.CardView> + + 
+</androidx.constraintlayout.widget.ConstraintLayout> +</layout> \ No newline 
+at end of file
